@@ -10,13 +10,13 @@ var player = {
 var enemyOne = {
   x: 15,
   y: 10,
-  timer = 0,
+  timer: 0,
   langth
 }
 var enemyTwo = {
   x: 175,
   y: 10,
-  timer  = 0,
+  timer: 0,
   langth
 }
 setInterval(ciclu,50);
