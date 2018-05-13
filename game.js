@@ -33,15 +33,15 @@ function enemy2Move() {
     enemyTwo.y = 10
   }
 }
-function checkEnd(xe,ye) {
+function checkEnd(enemy) {
   //console.log("xe :",xe + el)
-var xes = xe - player.l
-var xed = xe + langth
-  if(player.x > xes && player.x < xed && player.y < enemyOne.y+140 || player.y < enemyTwo.y+140) {
+var xes = enemy.x - player.l
+var xed = enemy.x + langth
+  if(player.x > xes && player.x < xed && player.y < enemyOne.y+langth || player.y < enemyTwo.y+langth) {
       enemyOne.y = 10
       enemyTwo.y = 10
       time = 0
-      console.log("xes",xes,"xed",xed,"pX",player.x,"Y",ye)
+      console.log("xes",xes,"xed",xed,"pX",player.x,"Y",enemy.y)
     alert("mai ancearca odata")
   }
   //console.log(xed)
@@ -56,8 +56,8 @@ function enemy1Move() {
 }
 function ciclu() {
   //console.log("in ciclu");
-  checkEnd(enemyOne.x,enemyOne.y)
-  checkEnd(enemyTwo.x,enemyTwo.y)
+  checkEnd(enemyOne)
+  checkEnd(enemyTwo)
   backround();
   Theplayer();
   enemy1Move();
