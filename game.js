@@ -6,6 +6,11 @@ var player = {
   l: 30,
   y: 610,
 }
+var enemyOne = {
+  x: 100
+
+
+}
 //enemy1 coordinates
 var e1y = 10
 //enemy2 coordinates
@@ -51,9 +56,6 @@ function enemy1Move() {
   e1y = 10
   }
 }
-
-
-
 function ciclu() {
   //console.log("in ciclu");
   checkEnd(e1x,e1y)
