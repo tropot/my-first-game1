@@ -10,11 +10,13 @@ var player = {
 var enemyOne = {
   x: 15,
   y: 10,
+  timer = 0,
   langth
 }
 var enemyTwo = {
   x: 175,
   y: 10,
+  timer  = 0,
   langth
 }
 setInterval(ciclu,50);
@@ -22,22 +24,22 @@ var r1 =  Math.floor((Math.random(10) * 25) + 5);
 var r2 =  Math.floor((Math.random(4) * 25) + 2);
 c = document.getElementById("cnv");
 cc = c.getContext("2d");
-    e1t = Math.floor((Math.random(1000) * 3000) + 1);
-e2t = Math.floor((Math.random(500 ) * 3000) + 1);
+enemyOne.timer = Math.floor((Math.random(1000) * 3000) + 1);
+enemyTwo.timer = Math.floor((Math.random(500 ) * 3000) + 1);
 function enemy2Move() {
-  e2y += 7
+  enemyTwo.y += 7
   //console.log(e2y)
-  if (e2y >= 625) {
-    e2y = 10
+  if (enemyTwo.y >= 625) {
+    enemyTwo.y = 10
   }
 }
 function checkEnd(xe,ye) {
   //console.log("xe :",xe + el)
 var xes = xe - player.l
 var xed = xe + el
-  if(player.x > xes && player.x < xed && player.y < e1y+140 || player.y < e2y+140) {
+  if(player.x > xes && player.x < xed && player.y < e1y+140 || player.y < enemyTwo.y+140) {
       e1y = 10
-      e2y = 10
+      enemyTwo.y = 10
       time = 0
       console.log("xes",xes,"xed",xed,"pX",player.x,"Y",ye)
     alert("mai ancearca odata")
@@ -55,7 +57,7 @@ function enemy1Move() {
 function ciclu() {
   //console.log("in ciclu");
   checkEnd(e1x,e1y)
-  checkEnd(e2x,e2y)
+  checkEnd(enemyTwo.x,enemyTwo.y)
   backround();
   Theplayer();
   enemy1Move();
@@ -79,11 +81,11 @@ function Theplayer(){
     }
 function enemy1() {
   cc.fillStyle='gray'
-  cc.fillRect(e1x,e1y,el,el)
+  cc.fillRect(e1x,e1y,langth,langth)
     }
 function enemy2() {
   cc.fillStyle='gray'
-  cc.fillRect(e2x,e2y,el,el)
+  cc.fillRect(enemyTwo.x,enemyTwo.y,langth,langth)
     }
 function move(e) {
   if (e.keyCode == 37) {
