@@ -1,26 +1,22 @@
 var c
 var cc
 var imageObj = new Image()
+var langth = 140
 var player = {
   x: 170,
   l: 30,
   y: 610,
 }
 var enemyOne = {
-  x: 100
-
-
+  x: 15,
+  y: 10,
+  langth
 }
-//enemy1 coordinates
-var e1y = 10
-//enemy2 coordinates
-var e2y = 10
-
-var e1t
-var e2t
-var e1x = 15
-var e2x = 175
-var el = 140
+var enemyTwo = {
+  x: 175,
+  y: 10,
+  langth
+}
 setInterval(ciclu,50);
 var r1 =  Math.floor((Math.random(10) * 25) + 5);
 var r2 =  Math.floor((Math.random(4) * 25) + 2);
