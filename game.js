@@ -37,7 +37,7 @@ function checkEnd(xe,ye) {
   //console.log("xe :",xe + el)
 var xes = xe - player.l
 var xed = xe + langth
-  if(player.x > xes && player.x < xed && player.y < e1y+140 || player.y < enemyTwo.y+140) {
+  if(player.x > xes && player.x < xed && player.y < enemyOne.y+140 || player.y < enemyTwo.y+140) {
       enemyOne.y = 10
       enemyTwo.y = 10
       time = 0
