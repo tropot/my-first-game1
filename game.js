@@ -18,7 +18,7 @@ var enemyOne = {
   speed: r1,
   xSpeed: 1,
   langth,
-  amlitudaX: 50
+  amplitudaX: 50
 }
 var enemyTwo = {
   xInitial: 15,
@@ -28,7 +28,7 @@ var enemyTwo = {
   speed: r2 ,
   xSpeed: 1,
   langth,
-  amlitudaX: 50
+  amplitudaX: 50
 }
 setInterval(ciclu,24);
 c = document.getElementById("cnv");
@@ -37,11 +37,17 @@ enemyOne.timer = Math.floor((Math.random(1000) * 3000));
 enemyTwo.timer = Math.floor((Math.random(500 ) * 3000));
 function enemyMove(enemy) {
   enemy.y += enemy.speed
-   enemy.x += enemy.xSpeed
-  //if (enemy.x+enemy.amplitudaX < enemy.x) {
-  // enemy.xSpeed = - enemy.xSpeed
-  //}
-  //console.log(e2y)
+  enemy.x += enemy.xSpeed
+   //console.log("enemy.x+enemy.amplitudaX",enemy.x+enemy.amplitudaX,"")
+  if(enemy.xSpeed > 0)  {
+    if (enemy.xInitial+enemy.amplitudaX < enemy.x) {
+      enemy.xSpeed = -enemy.xSpeed
+    }
+  }else {
+    if(enemy.x < enemy.xInitial) {
+      enemy.xSpeed = -enemy.xSpeed
+    }
+  }
   if (enemy.y >= 625) {
     enemy.y = 10
   }
@@ -70,7 +76,7 @@ function ciclu() {
   enemyMove(enemyOne);
   enemy1();
   enemy2();
-  console.log("obj1 : ",enemyOne,"obj2 : ",enemyTwo)
+   console.log("obj1 : ",enemyOne,"obj2 : ",enemyTwo)
 
 }
 function backround (){
