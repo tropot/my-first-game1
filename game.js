@@ -2,6 +2,8 @@ var c
 var cc
 var imageObj = new Image()
 var langth = 140
+var r1 =  Math.floor((Math.random(5) * 10)+1);
+var r2 =  Math.floor((Math.random(5) * 10)+1);
 var player = {
   x: 170,
   l: 30,
@@ -11,26 +13,26 @@ var enemyOne = {
   x: 15,
   y: 10,
   timer: 0,
+  speed: r1,
   langth
 }
 var enemyTwo = {
   x: 175,
   y: 10,
   timer: 0,
+  speed: r2 ,
   langth
 }
 setInterval(ciclu,50);
-var r1 =  Math.floor((Math.random(10) * 25) + 5);
-var r2 =  Math.floor((Math.random(4) * 25) + 2);
 c = document.getElementById("cnv");
 cc = c.getContext("2d");
 enemyOne.timer = Math.floor((Math.random(1000) * 3000) + 1);
 enemyTwo.timer = Math.floor((Math.random(500 ) * 3000) + 1);
-function enemy2Move() {
-  enemyTwo.y += 7
+function enemyMove(enemy) {
+  enemy.y += enemy.speed
   //console.log(e2y)
-  if (enemyTwo.y >= 625) {
-    enemyTwo.y = 10
+  if (enemy.y >= 625) {
+    enemy.y = 10
   }
 }
 function checkEnd(enemy) {
@@ -46,22 +48,14 @@ var xed = enemy.x + langth
   }
   //console.log(xed)
 }
-function enemy1Move() {
-  //console.log("before  enemy1Move ", e1y)
-  enemyOne.y += 5
-  //console.log(" enemy1Move ", e1y)
-  if (enemyOne.y >= 625) {
-  enemyOne.y = 10
-  }
-}
 function ciclu() {
   //console.log("in ciclu");
   checkEnd(enemyOne)
   checkEnd(enemyTwo)
   backround();
   Theplayer();
-  enemy1Move();
-  enemy2Move();
+  enemyMove(enemyTwo);
+  enemyMove(enemyOne);
   enemy1();
   enemy2();
 }
