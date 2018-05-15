@@ -18,17 +18,17 @@ var enemyOne = {
   speed: r1,
   xSpeed: 1,
   langth,
-  amplitudaX: 50
+  amplitudaX: 20
 }
 var enemyTwo = {
-  xInitial: 15,
+  xInitial:175,
   x: 175,
   y: 10,
   timer: 0,
   speed: r2 ,
   xSpeed: 1,
   langth,
-  amplitudaX: 50
+  amplitudaX: 20
 }
 setInterval(ciclu,24);
 c = document.getElementById("cnv");
@@ -39,7 +39,7 @@ function enemyMove(enemy) {
   enemy.y += enemy.speed
   enemy.x += enemy.xSpeed
    //console.log("enemy.x+enemy.amplitudaX",enemy.x+enemy.amplitudaX,"")
-  if(enemy.xSpeed > 0)  {
+  if(enemy.xSpeed > 0 )  {
     if (enemy.xInitial+enemy.amplitudaX < enemy.x) {
       enemy.xSpeed = -enemy.xSpeed
     }
