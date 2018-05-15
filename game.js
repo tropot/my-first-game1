@@ -65,6 +65,7 @@ function checkEnd(enemy) {
 var xes = enemy.x - player.l
 var xed = enemy.x + langth
   if(player.x > xes && player.x < xed && player.y < enemy.y+langth) {
+    enemy.speed +=  Math.floor((Math.random(5) * 10)+1);
       enemy.y = 10
       time = 0
       console.log("xes",xes,"xed",xed,"pX",player.x,"Y",enemy.y)
@@ -80,8 +81,8 @@ function ciclu() {
   Theplayer();
   enemyMove(enemyTwo);
   enemyMove(enemyOne);
-  enemy1();
-  enemy2();
+  enemyDraw(enemyOne);
+  enemyDraw(enemyTwo);
    console.log("obj1 : ",enemyOne,"obj2 : ",enemyTwo)
 
 }
@@ -99,13 +100,11 @@ function Theplayer(){
     player.x = 330
   }
     }
-function enemy1() {
-  image= enemyImage
-  cc.fillRect(enemyOne.x,enemyOne.y,langth,langth)
-    }
-function enemy2() {
+function enemyDraw(enemy) {
   cc.fillStyle='gray'
-  cc.fillRect(enemyTwo.x,enemyTwo.y,langth,langth)
+  cc.fillRect(enemy.x,enemy.y,langth,langth)
+  cc.fillStyle='gray'
+  cc.fillRect(enemy.x,enemy.y,langth,langth)
     }
 function move(e) {
   if (e.keyCode == 37) {
