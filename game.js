@@ -103,8 +103,7 @@ function Theplayer(){
 function enemyDraw(enemy) {
   cc.fillStyle='gray'
   cc.fillRect(enemy.x,enemy.y,langth,langth)
-  cc.fillStyle='gray'
-  cc.fillRect(enemy.x,enemy.y,langth,langth)
+
     }
 function move(e) {
   if (e.keyCode == 37) {
