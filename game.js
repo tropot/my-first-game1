@@ -1,6 +1,8 @@
 var c
 var cc
-var imageObj = new Image()
+var enemyImage = new Image()
+enemyImage.src = "/home/sergio/anton/programare/death rain/character.png"
+
 var langth = 140
 var r1 =  Math.floor((Math.random(5) * 10)+1);
 var r2 =  Math.floor((Math.random(5) * 10)+1);
@@ -48,7 +50,11 @@ function enemyMove(enemy) {
       enemy.xSpeed = -enemy.xSpeed
     }
   }
+  if (enemy.speed >= 10) {
+    enemy.speed = Math.floor((Math.random(5) * 10)+1);
+  }
   if (enemy.y >= 625) {
+    enemy.speed +=  Math.floor((Math.random(5) * 10)+1);
     enemy.y = 10
   }
 
@@ -94,7 +100,7 @@ function Theplayer(){
   }
     }
 function enemy1() {
-  cc.fillStyle='gray'
+  image= enemyImage
   cc.fillRect(enemyOne.x,enemyOne.y,langth,langth)
     }
 function enemy2() {
