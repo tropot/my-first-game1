@@ -1,8 +1,9 @@
 var c
 var cc
 var enemyImage = new Image()
-enemyImage.src = "/home/sergio/anton/programare/death rain/character.png"
-
+enemyImage.src = "/home/sergio/anton/programare/death rain/enemy.jpg"
+var backImage = new Image()
+backImage.src = "/home/sergio/anton/programare/death rain/back.jpg"
 var langth = 140
 var r1 =  Math.floor((Math.random(5) * 10)+1);
 var r2 =  Math.floor((Math.random(5) * 10)+1);
@@ -88,7 +89,7 @@ function ciclu() {
 }
 function backround (){
   cc.fillStyle ='#000000'
-  cc.fillRect(0 , 0,c.width,c.height)
+ cc.fillRect(0 , 0,c.width,c.height)
 }
 function Theplayer(){
   cc.fillStyle =' orange'
@@ -101,9 +102,7 @@ function Theplayer(){
   }
     }
 function enemyDraw(enemy) {
-  cc.fillStyle='gray'
-  cc.fillRect(enemy.x,enemy.y,langth,langth)
-
+cc.drawImage(enemyImage, enemy.x, enemy.y);
     }
 function move(e) {
   if (e.keyCode == 37) {
