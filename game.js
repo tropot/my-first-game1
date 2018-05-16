@@ -1,43 +1,31 @@
 var c
 var cc
+var enemys = []
+for (var enemyNr  = 3;enemyNr >= 1;enemyNr--){
+  enemys.push({
+    xInitial: Math.floor((Math.random(1) * 185)),
+    x: Math.floor((Math.random(1) * 185)),
+    y: Math.floor((Math.random(10) * 50)),
+    timer: Math.floor((Math.random(1000) * 3000)),
+    speed: Math.floor((Math.random(5) * 7)+1),
+    xSpeed: 10,
+    langth:140,
+    amplitudaX:15,
+})
+}
+console.log("enemy =",enemys)
 var enemyImage = new Image()
 enemyImage.src = "/home/sergio/anton/programare/death rain/enemy.jpg"
-var backImage = new Image()
-backImage.src = "/home/sergio/anton/programare/death rain/back.jpg"
 var langth = 140
-var r1 =  Math.floor((Math.random(5) * 10)+1);
-var r2 =  Math.floor((Math.random(5) * 10)+1);
 var amlitudaX
 var player = {
   x: 170,
   l: 30,
   y: 610,
 }
-var enemyOne = {
-  xInitial: 15,
-  x: 15,
-  y: 10,
-  timer: 0,
-  speed: r1,
-  xSpeed: 1,
-  langth,
-  amplitudaX: 20
-}
-var enemyTwo = {
-  xInitial:175,
-  x: 175,
-  y: 10,
-  timer: 0,
-  speed: r2 ,
-  xSpeed: 1,
-  langth,
-  amplitudaX: 20
-}
 setInterval(ciclu,24);
 c = document.getElementById("cnv");
 cc = c.getContext("2d");
-enemyOne.timer = Math.floor((Math.random(1000) * 3000));
-enemyTwo.timer = Math.floor((Math.random(500 ) * 3000));
 function enemyMove(enemy) {
   enemy.y += enemy.speed
   enemy.x += enemy.xSpeed
@@ -52,10 +40,10 @@ function enemyMove(enemy) {
     }
   }
   if (enemy.speed >= 10) {
-    enemy.speed = Math.floor((Math.random(5) * 10)+1);
+    enemy.speed = Math.floor((Math.random(5) * 7)+1);
   }
   if (enemy.y >= 625) {
-    enemy.speed +=  Math.floor((Math.random(5) * 10)+1);
+    enemy.speed =  Math.floor((Math.random(5) * 7)+1);
     enemy.y = 10
   }
 
@@ -76,23 +64,24 @@ var xed = enemy.x + langth
 }
 function ciclu() {
   //console.log("in ciclu");
-  checkEnd(enemyOne)
-  checkEnd(enemyTwo)
+  console.log("caroce enemys este",enemys)
+  for(var o = 0;o < enemys.length;o++){
+    checkEnd(enemys[o])
+  }
   backround();
-  Theplayer();
-  enemyMove(enemyTwo);
-  enemyMove(enemyOne);
-  enemyDraw(enemyOne);
-  enemyDraw(enemyTwo);
-   console.log("obj1 : ",enemyOne,"obj2 : ",enemyTwo)
+  for(o = 0;o < enemys.length;o++){
+    enemyMove(enemys[o]);
+    enemyDraw(enemys[o]);
+  }
 
+  Theplayer();
 }
 function backround (){
   cc.fillStyle ='#000000'
  cc.fillRect(0 , 0,c.width,c.height)
 }
 function Theplayer(){
-  cc.fillStyle =' orange'
+  cc.fillStyle ='green'
   cc.fillRect(player.x,player.y,player.l,player.l)
   if (player.x >= 338) {
     player.x = 5
@@ -106,11 +95,11 @@ cc.drawImage(enemyImage, enemy.x, enemy.y);
     }
 function move(e) {
   if (e.keyCode == 37) {
-     player.x-=20
+     player.x-=40
      //console.log(pX)
     }
   if (e.keyCode == 39) {
-     player.x+=20
+     player.x+=40
      //console.log(pX)
    }
   }
