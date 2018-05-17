@@ -1,10 +1,10 @@
 var c
 var cc
 var enemys = []
-for (var enemyNr  = 3;enemyNr >= 1;enemyNr--){
+for (var enemyNr  = 10;enemyNr >= 1;enemyNr--){
   enemys.push({
-    xInitial: Math.floor((Math.random(1) * 185)),
-    x: Math.floor((Math.random(1) * 185)),
+    xInitial: Math.floor((Math.random(20) * 300)),
+    x: Math.floor((Math.random(20) * 300)),
     y: Math.floor((Math.random(10) * 50)),
     timer: Math.floor((Math.random(1000) * 3000)),
     speed: Math.floor((Math.random(5) * 7)+1),
@@ -23,7 +23,9 @@ var player = {
   l: 30,
   y: 610,
 }
+window.onload=function(){
 setInterval(ciclu,24);
+}
 c = document.getElementById("cnv");
 cc = c.getContext("2d");
 function enemyMove(enemy) {
@@ -54,7 +56,7 @@ function checkEnd(enemy) {
 var xes = enemy.x - player.l
 var xed = enemy.x + langth
   if(player.x > xes && player.x < xed && player.y < enemy.y+langth) {
-    enemy.speed +=  Math.floor((Math.random(5) * 10)+1);
+    enemy.speed +=  Math.floor((Math.random(5) * 7)+1);
       enemy.y = 10
       time = 0
       console.log("xes",xes,"xed",xed,"pX",player.x,"Y",enemy.y)
@@ -63,21 +65,22 @@ var xed = enemy.x + langth
   //console.log(xed)
 }
 function ciclu() {
+  cc.clearRect(0, 0, c.width, c.height);
+    backround();
+    Theplayer();
+    for(o = 0;o < enemys.length;o++){
+      enemyMove(enemys[o]);
+      enemyDraw(enemys[o]);
+    }
   //console.log("in ciclu");
   console.log("caroce enemys este",enemys)
   for(var o = 0;o < enemys.length;o++){
     checkEnd(enemys[o])
   }
-  backround();
-  for(o = 0;o < enemys.length;o++){
-    enemyMove(enemys[o]);
-    enemyDraw(enemys[o]);
-  }
-
-  Theplayer();
 }
 function backround (){
-  cc.fillStyle ='#000000'
+
+ cc.fillStyle ='#000000'
  cc.fillRect(0 , 0,c.width,c.height)
 }
 function Theplayer(){
@@ -91,6 +94,7 @@ function Theplayer(){
   }
     }
 function enemyDraw(enemy) {
+
 cc.drawImage(enemyImage, enemy.x, enemy.y);
     }
 function move(e) {
