@@ -1,21 +1,76 @@
+
 var c
 var cc
-var enemys = []
-for (var enemyNr  = 10;enemyNr >= 1;enemyNr--){
-  enemys.push({
-    xInitial: Math.floor((Math.random(20) * 300)),
-    x: Math.floor((Math.random(20) * 300)),
-    y: Math.floor((Math.random(10) * 50)),
-    timer: Math.floor((Math.random(1000) * 3000)),
-    speed: Math.floor((Math.random(5) * 7)+1),
-    xSpeed: 10,
-    langth:140,
-    amplitudaX:15,
-})
+var img = document.getElementById("scream")
+class Sprite {
+  constructor(x, y, image) {
+    this.x = x;
+    this.y = y;
+    this.prev_x = x;
+    this.prev_y = y;
+    this.image = image;
+    this.width = this.image.naturalWidth;
+    this.height = this.image.naturalHeight;
+    this.backgroundCopy = false;
+    //console.log("this.image = ", this.image, " this.width ", this.width);
+  }
+  draw() {
+    if (this.backgroundCopy) {
+      cc.putImageData(this.backgroundCopy, this.prev_x, this.prev_y);
+    }
+    this.backgroundCopy = cc.getImageData(this.x, this.y, this.width, this.height);
+    this.prev_x = this.x;
+    this.prev_y = this.y;
+    //console.log(" this.height ", this.height, " naturalWidth ", this.image.naturalWidth );
+    cc.drawImage(this.image, this.x, this.y);
+  }
 }
+class Enemy extends Sprite {
+  constructor(enemyObj) {
+    super(enemyObj.x, enemyObj.y, enemyObj.image);
+    this.xInitial = enemyObj.xInitial;
+    this.timer = enemyObj.timer
+    this.speed = enemyObj.speed
+    this.xSpeed = enemyObj.xSpeed
+    this.langth = enemyObj.langth
+    this.amplitudaX = enemyObj.amplitudaX
+  }
+}
+var sprite = {}
+function fillCanvas() {
+  for(var x=0; x<3000; x +=220) {
+    for(var y=0;y<2500;y +=190) {
+  //    console.log(" x=", x, " y=", y);
+      cc.drawImage(bushImg, x, y);
+    }
+  }
+}
+
+var bushImg = document.getElementById("bush");
+console.log("bush",bushImg);
+bushImg.setAttribute('crossOrigin', '');
+
+var enemys = []
+function createEnemies() {
+  for (var enemyNr  = 10;enemyNr >= 1;enemyNr--){
+    enemys.push(new Enemy({
+
+      image: img,
+      xInitial: Math.floor((Math.random(20) * 300)),
+      x: Math.floor((Math.random(20) * 300)),
+      y: Math.floor((Math.random(10) * 50)),
+      timer: Math.floor((Math.random(1000) * 3000)),
+      speed: Math.floor((Math.random(5) * 7)+1),
+      xSpeed: 10,
+      langth:140,
+      amplitudaX:15,
+    }))
+  }
+}
+createEnemies()
 console.log("enemy =",enemys)
 var enemyImage = new Image()
-enemyImage.src = "/home/sergio/anton/programare/death rain/enemy.jpg"
+//enemyImage.src = "/home/sergio/anton/programare/death rain/enemy.jpg"
 var langth = 140
 var amlitudaX
 var player = {
@@ -65,23 +120,20 @@ var xed = enemy.x + langth
   //console.log(xed)
 }
 function ciclu() {
-  cc.clearRect(0, 0, c.width, c.height);
-    backround();
-    Theplayer();
+    sprite = new Sprite(25, 100, img);
+  //cc.clearRect(0, 0, c.width, c.height);
+    fillCanvas();
     for(o = 0;o < enemys.length;o++){
       enemyMove(enemys[o]);
       enemyDraw(enemys[o]);
     }
+    Theplayer();
+
   //console.log("in ciclu");
   console.log("caroce enemys este",enemys)
   for(var o = 0;o < enemys.length;o++){
     checkEnd(enemys[o])
   }
-}
-function backround (){
-
- cc.fillStyle ='#000000'
- cc.fillRect(0 , 0,c.width,c.height)
 }
 function Theplayer(){
   cc.fillStyle ='green'
@@ -94,8 +146,9 @@ function Theplayer(){
   }
     }
 function enemyDraw(enemy) {
-
-cc.drawImage(enemyImage, enemy.x, enemy.y);
+  //prev_pos = pos;
+   sprite.x = sprite.x + enemy.speed;
+   sprite.draw();
     }
 function move(e) {
   if (e.keyCode == 37) {
@@ -108,3 +161,4 @@ function move(e) {
    }
   }
   document.onkeydown = move
+console.log(enemys)
