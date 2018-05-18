@@ -1,4 +1,3 @@
-
 var c
 var cc
 var img = document.getElementById("scream")
@@ -15,6 +14,7 @@ class Sprite {
     //console.log("this.image = ", this.image, " this.width ", this.width);
   }
   draw() {
+  //  console.log("draw",this.y)
     if (this.backgroundCopy) {
       cc.putImageData(this.backgroundCopy, this.prev_x, this.prev_y);
     }
@@ -36,7 +36,7 @@ class Enemy extends Sprite {
     this.amplitudaX = enemyObj.amplitudaX
   }
 }
-var sprite = {}
+
 function fillCanvas() {
   for(var x=0; x<3000; x +=220) {
     for(var y=0;y<2500;y +=190) {
@@ -52,9 +52,8 @@ bushImg.setAttribute('crossOrigin', '');
 
 var enemys = []
 function createEnemies() {
-  for (var enemyNr  = 10;enemyNr >= 1;enemyNr--){
+  for (var enemyNr  = 2;enemyNr >= 1;enemyNr--){
     enemys.push(new Enemy({
-
       image: img,
       xInitial: Math.floor((Math.random(20) * 300)),
       x: Math.floor((Math.random(20) * 300)),
@@ -84,7 +83,7 @@ setInterval(ciclu,24);
 c = document.getElementById("cnv");
 cc = c.getContext("2d");
 function enemyMove(enemy) {
-  enemy.y += enemy.speed
+enemy.y += enemy.speed
   enemy.x += enemy.xSpeed
    //console.log("enemy.x+enemy.amplitudaX",enemy.x+enemy.amplitudaX,"")
   if(enemy.xSpeed > 0 )  {
@@ -114,14 +113,13 @@ var xed = enemy.x + langth
     enemy.speed +=  Math.floor((Math.random(5) * 7)+1);
       enemy.y = 10
       time = 0
-      console.log("xes",xes,"xed",xed,"pX",player.x,"Y",enemy.y)
+      //console.log("xes",xes,"xed",xed,"pX",player.x,"Y",enemy.y)
     alert("mai ancearca odata")
   }
   //console.log(xed)
 }
 function ciclu() {
-    sprite = new Sprite(25, 100, img);
-  //cc.clearRect(0, 0, c.width, c.height);
+  cc.clearRect(0, 0, c.width, c.height);
     fillCanvas();
     for(o = 0;o < enemys.length;o++){
       enemyMove(enemys[o]);
@@ -130,7 +128,7 @@ function ciclu() {
     Theplayer();
 
   //console.log("in ciclu");
-  console.log("caroce enemys este",enemys)
+  //console.log("caroce enemys este",enemys)
   for(var o = 0;o < enemys.length;o++){
     checkEnd(enemys[o])
   }
@@ -147,8 +145,9 @@ function Theplayer(){
     }
 function enemyDraw(enemy) {
   //prev_pos = pos;
-   sprite.x = sprite.x + enemy.speed;
-   sprite.draw();
+  //sprite.y = sprite.y + enemy.speed;
+   enemy.draw();
+  // console.log("acum sunt in draw",sprite)
     }
 function move(e) {
   if (e.keyCode == 37) {
