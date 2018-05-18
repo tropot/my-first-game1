@@ -66,7 +66,7 @@ function createEnemies() {
     }))
   }
 }
-createEnemies()
+
 console.log("enemy =",enemys)
 var enemyImage = new Image()
 //enemyImage.src = "/home/sergio/anton/programare/death rain/enemy.jpg"
@@ -78,7 +78,10 @@ var player = {
   y: 610,
 }
 window.onload=function(){
+  fillCanvas()
+  createEnemies()
 setInterval(ciclu,24);
+
 }
 c = document.getElementById("cnv");
 cc = c.getContext("2d");
@@ -119,8 +122,8 @@ var xed = enemy.x + langth
   //console.log(xed)
 }
 function ciclu() {
-  cc.clearRect(0, 0, c.width, c.height);
-    fillCanvas();
+//  cc.clearRect(0, 0, c.width, c.height);
+    //fillCanvas();
     for(o = 0;o < enemys.length;o++){
       enemyMove(enemys[o]);
       enemyDraw(enemys[o]);
