@@ -12,13 +12,19 @@ class Sprite {
     this.height = this.image.naturalHeight;
     this.backgroundCopy = false;
   }
-  draw() {
+  drawBackground() {
     if (this.backgroundCopy) {
       cc.putImageData(this.backgroundCopy, this.prev_x, this.prev_y);
     }
+
+
+  }
+  copyBackground() {
     this.backgroundCopy = cc.getImageData(this.x, this.y, this.width, this.height);
     this.prev_x = this.x;
     this.prev_y = this.y;
+  }
+  draw() {
     cc.drawImage(this.image, this.x, this.y);
   }
 }
@@ -111,9 +117,16 @@ var xed = enemy.x + langth
   }
 }
 function ciclu() {
+
     for(o = 0;o < enemys.length;o++){
       enemyMove(enemys[o]);
-      enemyDraw(enemys[o]);
+      enemys[o].drawBackground()
+    }
+    for(var k = 0 ;k < enemys.length;k++){
+      enemys[k].copyBackground()
+    }
+    for(var k = 0 ;k < enemys.length;k++){
+      enemys[k].draw()
     }
     Theplayer();
   for(var o = 0;o < enemys.length;o++){
